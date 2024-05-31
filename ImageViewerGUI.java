@@ -1,3 +1,4 @@
+// these are the nececery librarys
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.awt.image.RescaleOp;
 
 public class ImageViewerGUI extends JFrame implements ActionListener {
+    // buttons and textfields and.. are defiend here
     JButton selectFileButton;
     JButton showImageButton;
     JButton resizeButton;
@@ -26,7 +28,7 @@ public class ImageViewerGUI extends JFrame implements ActionListener {
 
 
     ImageViewerGUI() {
-
+        //main panel
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Image Viewer");
         this.setSize(700, 300);
@@ -39,7 +41,7 @@ public class ImageViewerGUI extends JFrame implements ActionListener {
     public void mainPanel() {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(3, 2));
-
+         //add buttons
         selectFileButton = new JButton("Choose Image");
         selectFileButton.addActionListener(this);
         showImageButton = new JButton("Show Image");
@@ -62,7 +64,7 @@ public class ImageViewerGUI extends JFrame implements ActionListener {
 
         this.add(mainPanel);
     }
-
+    //choosing a photo
     public void chooseFileImage() {
         JFileChooser fileChooser = new JFileChooser(filePath);
         int returnValue = fileChooser.showOpenDialog(null);
@@ -75,7 +77,7 @@ public class ImageViewerGUI extends JFrame implements ActionListener {
             }
         }
     }
-
+     //shows the photo
     public void showOriginalImage() {
         JPanel tempPanel = new JPanel();
         ImageIcon imageIcon = new ImageIcon(originalImage);
@@ -88,7 +90,7 @@ public class ImageViewerGUI extends JFrame implements ActionListener {
         tempFrame.setSize(originalImage.getWidth(), originalImage.getHeight());
         tempFrame.setVisible(true);
     }
-
+    // change the brightness
     public void adjustBrightness() {
 
         JFrame panel = new JFrame();
@@ -140,7 +142,7 @@ public class ImageViewerGUI extends JFrame implements ActionListener {
 
     }
 
-
+     //black and white image
     public void convertToGrayscale() {
         BufferedImage grayImage = new BufferedImage(originalImage.getWidth(), originalImage.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
         Graphics g = grayImage.getGraphics();
@@ -156,7 +158,7 @@ public class ImageViewerGUI extends JFrame implements ActionListener {
         tempFrame.setSize(grayImage.getWidth(), grayImage.getHeight());
         tempFrame.setVisible(true);
     }
-
+    //change images size
     public void resizeImage() {
         JFrame panel = new JFrame();
         panel.setVisible(true);
@@ -209,7 +211,7 @@ public class ImageViewerGUI extends JFrame implements ActionListener {
             }
         });
     }
-
+     //buttons actions
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == selectFileButton) {
